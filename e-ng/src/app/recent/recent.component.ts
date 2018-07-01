@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { WordUnit } from '../models/WordUnit';
-import { DICT } from '../mock-dict';
-import { DictionaryComponent } from "../dictionary/dictionary.component";
+import { DictionaryService } from "../dictionary.service";
 
 @Component({
   selector: 'app-recent',
   templateUrl: './recent.component.html',
   styleUrls: ['./recent.component.scss']
 })
-export class RecentComponent implements OnInit {
+export class RecentComponent {
+  isEmpty: boolean = !this.dictionaryService.length;
 
-  constructor() {
-
-  }
-
-  ngOnInit() {
-
+  constructor(private dictionaryService: DictionaryService) {
+      dictionaryService.wordAdded$.subscribe(() => !this.dictionaryService.length);
   }
 }

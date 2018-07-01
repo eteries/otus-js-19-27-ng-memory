@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../models/Game';
-import { DICT } from '../mock-dict';
 import { spliceRandom } from "../utils";
 import { MatSnackBar } from '@angular/material';
+import { DictionaryService } from "../dictionary.service";
 
 @Component({
   selector: 'app-go',
@@ -15,17 +15,17 @@ export class GoComponent implements OnInit {
   game: Game;
   isActive: boolean = true;
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private dictionaryService: DictionaryService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.play()
+    this.play();
   }
 
   next() {
     this.game.saveAnswer(this.model.answer);
 
-    const message = this.game.checkCurrentAnswer() ? 'You\'re right' : 'Not really';
-    this.snackBar.open(message, null, {duration: 2000});
+    const message = this.game.checkCurrentAnswer() ? 'You\'re right' : `Not really. The right answer is "${this.current.rightAnswer}"`;
+    this.snackBar.open(message, null, {duration: 3000});
 
     const nextQuestion = this.game.next();
     if (nextQuestion.done) {
@@ -37,7 +37,7 @@ export class GoComponent implements OnInit {
   }
 
   play() {
-      this.game = new Game(spliceRandom(DICT, 3));
+      this.game = new Game(this.dictionaryService.getRandom(3));
       this.current = this.game.next().value;
       this.isActive = true;
   }

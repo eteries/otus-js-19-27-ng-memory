@@ -1,6 +1,10 @@
 <section class="recent">
-  <dictionary-view [recentNum]="7"></dictionary-view>
-  <div class="actions">
-    <button mat-raised-button color="primary">Add New</button>
+  <div class="recent-left" [hidden]="isEmpty">
+    <dictionary-view [recentNum]="7"></dictionary-view>
   </div>
+  <div class="recent-right">
+    <add-word></add-word>
+  </div>
+
+
 </section>

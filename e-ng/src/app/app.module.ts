@@ -10,6 +10,7 @@ import { RecentComponent } from './recent/recent.component';
 import { GoComponent } from './go/go.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DictionaryComponent } from './dictionary/dictionary.component';
+import { AddWordComponent } from './add-word/add-word.component';
 
 const routes: Routes = [
     {path: 'settings', component: SettingsComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
     RecentComponent,
     GoComponent,
     SettingsComponent,
-    DictionaryComponent
+    DictionaryComponent,
+    AddWordComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 export class WordUnit {
     constructor(
-        public id: number,
-        public date: Date,
+        public id: string,
+        public date: string,
         public original: string,
         public translation: string
     ) {}

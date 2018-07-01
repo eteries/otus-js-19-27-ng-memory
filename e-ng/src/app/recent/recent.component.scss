@@ -1,5 +1,14 @@
 .recent {
   padding: 30px;
+  display: flex;
+}
+
+.recent-left {
+  flex: 0 0 30%
+}
+
+.recent-right {
+  flex: 1 0 auto;
 }
 
 fieldset {

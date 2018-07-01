@@ -43,6 +43,6 @@ export class Game implements Iterator<Object> {
     }
 
     checkCurrentAnswer() {
-        return this.current.userAnswer === this.current.rightAnswer;
+        return this.current.userAnswer.toLowerCase() === this.current.rightAnswer.toLowerCase();
     }
 }
