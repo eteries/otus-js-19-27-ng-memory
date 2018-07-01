@@ -1,17 +1,5 @@
 <section class="recent">
-  <ng-container *ngIf="!recent.length; else list" >
-    no recent
-  </ng-container>
-  <ng-template #list>
-    <mat-list>
-      <ng-container *ngFor="let date of getKeys(groupedRecent)">
-        <h2 matSubheader>{{ date | date }}</h2>
-        <mat-list-item *ngFor="let word of groupedRecent[date]">
-          {{ word.original }} - {{ word.translation }}
-        </mat-list-item>
-      </ng-container>
-    </mat-list>
-  </ng-template>
+  <dictionary-view [recentNum]="7"></dictionary-view>
   <div class="actions">
     <button mat-raised-button color="primary">Add New</button>
   </div>

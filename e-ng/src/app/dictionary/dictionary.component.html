@@ -1,0 +1,19 @@
+<ng-container *ngIf="!recentWordsList.length; else recent" >
+  <mat-list>
+    <mat-list-item *ngFor="let word of allWordsList">
+      {{ word.original }} - {{ word.translation }}
+    </mat-list-item>
+  </mat-list>
+</ng-container>
+<ng-template #recent>
+  <mat-list>
+    <ng-container *ngFor="let date of getKeys(groupedRecent)">
+      <h2 matSubheader>{{ date | date }}</h2>
+      <mat-list-item *ngFor="let word of groupedRecent[date]" class="ask-btn">
+        <button mat-button (click)="askYandex(word.original)">
+          {{ word.original }} - {{ word.translation }}
+        </button>
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+</ng-template>

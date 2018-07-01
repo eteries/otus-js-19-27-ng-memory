@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WordUnit } from '../models/WordUnit';
 import { DICT } from '../mock-dict';
+import { DictionaryComponent } from "../dictionary/dictionary.component";
 
 @Component({
   selector: 'app-recent',
@@ -9,27 +10,11 @@ import { DICT } from '../mock-dict';
 })
 export class RecentComponent implements OnInit {
 
-  recent: WordUnit[] = [];
-  groupedRecent: any = {};
-  model = {} as WordUnit;
-  getKeys = Object.keys;
-  isFormOpen:boolean = false;
+  constructor() {
+
+  }
 
   ngOnInit() {
-      this.recent = RecentComponent.getRecent(7);
-      this.groupRecentByDate(this.recent);
-  }
 
-  static getRecent(quantity: number): WordUnit[] {
-      return DICT.slice(-quantity);
-  }
-
-  private groupRecentByDate(recent: WordUnit[]) {
-      this.groupedRecent = recent.reduce((res, word) => {
-          const dateStr = word.date.toDateString();
-          if(!res[dateStr]) res[dateStr] = [];
-          res[dateStr].push(word);
-          return res;
-      },{} as any);
   }
 }

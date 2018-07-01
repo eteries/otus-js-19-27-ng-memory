@@ -2,13 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatInputModule, MatListModule, MatSelectModule, MatSnackBarModule, MatTabsModule} from "@angular/material";
+import { MatButtonModule, MatInputModule, MatListModule, MatSelectModule, MatSnackBarModule, MatTabsModule, MatTooltipModule} from "@angular/material";
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { RecentComponent } from './recent/recent.component';
 import { GoComponent } from './go/go.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DictionaryComponent } from './dictionary/dictionary.component';
 
 const routes: Routes = [
     {path: 'settings', component: SettingsComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
     AppComponent,
     RecentComponent,
     GoComponent,
-    SettingsComponent
+    SettingsComponent,
+    DictionaryComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ const routes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatTooltipModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

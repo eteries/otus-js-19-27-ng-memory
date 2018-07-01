@@ -10,5 +10,5 @@ export const DICT: WordUnit[] = [
 { id: 17, date: new Date('29 Jun 2018'), original: 'pen', translation: 'ручка' },
 { id: 18, date: new Date('30 Jun 2018'), original: 'pencil', translation: 'карандаш' },
 { id: 19, date: new Date('30 Jun 2018'), original: 'tree', translation: 'дерево' },
-{ id: 20, date: new Date('30 Jun 2018'), original: 'glass', translation: 'трава' }
+{ id: 20, date: new Date('30 Jun 2018'), original: 'grass', translation: 'трава' }
 ];
