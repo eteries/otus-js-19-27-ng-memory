@@ -37,7 +37,7 @@ export class DictionaryService {
       return spliceRandom(this.dict, quantity);
   }
 
-  save() {
+  private save() {
       localStorage.setItem('dict', JSON.stringify(this.dict));
   }
 

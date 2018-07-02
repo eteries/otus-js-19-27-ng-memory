@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DictionaryComponent } from './dictionary.component';
+import { MatListModule, MatSnackBarModule } from '@angular/material';
 
 describe('DictionaryComponent', () => {
   let component: DictionaryComponent;
@@ -8,7 +9,8 @@ describe('DictionaryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DictionaryComponent ]
+      declarations: [ DictionaryComponent ],
+      imports: [ MatListModule, MatSnackBarModule ]
     })
     .compileComponents();
   }));
