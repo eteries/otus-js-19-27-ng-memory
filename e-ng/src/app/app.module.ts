@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from '@angular/core';
+import { NgModule, PLATFORM_ID, APP_ID, Inject } from '@angular/core';
 import { MatButtonModule, MatInputModule, MatListModule, MatSelectModule, MatSnackBarModule, MatTabsModule, MatTooltipModule} from "@angular/material";
 import { RouterModule, Routes } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { RecentComponent } from './recent/recent.component';
@@ -28,7 +29,7 @@ const routes: Routes = [
     AddWordComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'e-ng-memory' }),
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -43,4 +44,10 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(APP_ID) private appId: string) {
+      const platform = isPlatformBrowser(platformId) ?
+          'in the browser' : 'on the server';
+      console.log(`Running ${platform} with appId=${appId}`);
+  }
+}
