@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import { WordUnit } from './models/WordUnit';
 import { spliceRandom } from './utils';
 import { Subject } from 'rxjs'
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,12 @@ export class DictionaryService {
 
   private dict: WordUnit[] = [];
 
-  constructor() {
-      const stored = localStorage.getItem('dict');
-      this.dict = stored ? JSON.parse(stored) : [];
+  constructor(@Inject(PLATFORM_ID) private platformId) {
+      if (isPlatformBrowser(platformId)) {
+          const stored = localStorage.getItem('dict');
+          this.dict = stored ? JSON.parse(stored) : [];
+      } else
+          this.dict = [];
   }
 
   add(word: WordUnit) {
