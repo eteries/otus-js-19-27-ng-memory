@@ -18,7 +18,7 @@ export class DictionaryService {
   }
 
   add(word: WordUnit) {
-    if(this.dict.push(word)) {
+    if(this.dict.unshift(word)) {
         this.wordAdded.next(word.original);
         this.save();
         return true;

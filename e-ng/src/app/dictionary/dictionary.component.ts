@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WordUnit } from './WordUnit';
 import { DictionaryService } from "./dictionary.service";
 import { TranslateService } from "../shared/translate.service";
@@ -35,12 +35,12 @@ export class DictionaryComponent implements OnInit {
 
     ngOnInit() {
         this.getWords();
-        if (this.translateService.isKeyMissing()) {
-            this.snackBar.open(Messages.MISSING_KEY, null, {duration: 5000})
-        }
     }
 
     askYandex(word: string) {
+        if (this.translateService.isKeyMissing()) {
+            this.snackBar.open(Messages.MISSING_KEY, null, {duration: 5000})
+        }
         this.translateService.translate(word)
             .then(result => {
                 if(result.text) {
