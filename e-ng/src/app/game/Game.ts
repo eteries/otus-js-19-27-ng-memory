@@ -1,4 +1,4 @@
-import { WordUnit } from "./WordUnit";
+import { WordUnit } from "../dictionary/WordUnit";
 import { Question } from "./Question";
 
 export class Game implements Iterator<Object> {

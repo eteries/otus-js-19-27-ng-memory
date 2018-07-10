@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { WordUnit } from '../models/WordUnit';
-import { DictionaryService } from "../dictionary.service";
-import { TranslateService } from "../translate.service";
+import { Component, Input, OnInit} from '@angular/core';
+import { WordUnit } from './WordUnit';
+import { DictionaryService } from "./dictionary.service";
+import { TranslateService } from "../shared/translate.service";
 import { MatSnackBar } from '@angular/material';
+import { Messages } from '../shared/constants';
 
 @Component({
   selector: 'dictionary-view',
@@ -34,12 +35,19 @@ export class DictionaryComponent implements OnInit {
 
     ngOnInit() {
         this.getWords();
+        if (this.translateService.isKeyMissing()) {
+            this.snackBar.open(Messages.MISSING_KEY, null, {duration: 5000})
+        }
     }
 
     askYandex(word: string) {
         this.translateService.translate(word)
-            .then(result => this.snackBar.open('Yandex.translate: ' + result.text, null, {duration: 3000}))
-            .catch(error => this.snackBar.open('Connection Error', null, {duration: 3000}));
+            .then(result => {
+                if(result.text) {
+                    this.snackBar.open(Messages.TRANSLATE_RESULT + result.text, null, {duration: 3000})
+                } else throw Error(Messages.TRANSLATE_ERROR);
+            })
+            .catch(error => this.snackBar.open(Messages.TRANSLATE_ERROR, null, {duration: 3000}));
     }
 
     private getWords() {

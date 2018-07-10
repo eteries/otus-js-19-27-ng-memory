@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { APP_TITLE } from './shared/constants';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'e-ng-memory';
+  title = APP_TITLE;
   links = [
       {
         path: '',

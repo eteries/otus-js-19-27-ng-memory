@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AddWordComponent } from './add-word.component';
 import { MatInputModule, MatSnackBarModule } from "@angular/material";
-import { AppComponent } from '../app.component';
+import { AppComponent } from '../../app.component';
 
 describe('AddWordComponent', () => {
   let component: AddWordComponent;

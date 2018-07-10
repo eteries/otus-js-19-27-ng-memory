@@ -1,8 +1,8 @@
-import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import { WordUnit } from './models/WordUnit';
-import { spliceRandom } from './utils';
+import { Injectable } from '@angular/core';
+import { WordUnit } from './WordUnit';
+import { RandomizeService } from "../shared/randomize.service";
 import { Subject } from 'rxjs'
-import { isPlatformBrowser } from "@angular/common";
+import { StorageService } from '../shared/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,8 @@ export class DictionaryService {
 
   private dict: WordUnit[] = [];
 
-  constructor(@Inject(PLATFORM_ID) private platformId) {
-      if (isPlatformBrowser(platformId)) {
-          const stored = localStorage.getItem('dict');
-          this.dict = stored ? JSON.parse(stored) : [];
-      } else
-          this.dict = [];
+  constructor(private randomizeService: RandomizeService, private storageService: StorageService) {
+      this.dict = storageService.load();
   }
 
   add(word: WordUnit) {
@@ -38,11 +34,11 @@ export class DictionaryService {
   }
 
   getRandom(quantity: number) {
-      return spliceRandom(this.dict, quantity);
+      return this.randomizeService.spliceRandom(this.dict, quantity);
   }
 
   private save() {
-      localStorage.setItem('dict', JSON.stringify(this.dict));
+      this.storageService.save(this.dict);
   }
 
   get length() {

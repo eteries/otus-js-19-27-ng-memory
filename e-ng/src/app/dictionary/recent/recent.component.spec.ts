@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecentComponent } from './recent.component';
-import { DictionaryComponent } from '../dictionary/dictionary.component';
+import { DictionaryComponent } from '../dictionary.component';
 import { AddWordComponent } from '../add-word/add-word.component';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule, MatListModule, MatSnackBarModule } from '@angular/material';

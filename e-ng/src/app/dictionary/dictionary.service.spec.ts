@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { DictionaryService } from './dictionary.service';
-import { WordUnit } from './models/WordUnit';
+import { WordUnit } from './WordUnit';
 
 describe('DictionaryService', () => {
   beforeEach(() => {
