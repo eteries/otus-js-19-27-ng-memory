@@ -1,0 +1,24 @@
+<section class="go">
+  <ng-container *ngIf="current; else initial">
+    <ng-container *ngIf="isActive; else results">
+      <h2>{{ current?.question }}</h2>
+
+      <form #answerForm="ngForm" (ngSubmit)="next(); answerForm.reset()" *ngIf="isActive" autocomplete="off">
+        <mat-form-field>
+          <input matInput placeholder="Your translation" id="answer" name="answer" [(ngModel)]="model.answer" required >
+        </mat-form-field>
+        <div><button mat-raised-button color="accent" [disabled]="!answerForm.form.valid">Next</button></div>
+      </form>
+    </ng-container>
+
+    <ng-template #results>
+      <h2>Game is over</h2>
+      Your score is {{ game.score }}. Play again?
+      <div class="actions"><button mat-raised-button color="primary" (click) = "play()">Why not</button></div>
+    </ng-template>
+  </ng-container>
+  <ng-template #initial>
+    <a href routerLink="/">Please add words to start the game</a>
+  </ng-template>
+</section>
+

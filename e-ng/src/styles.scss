@@ -1,0 +1,18 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.actions {
+  margin-top: 30px;
+}
+
+.mat-form-field.mat-form-field-invalid.ng-pristine .mat-form-field-label{
+  color: rgba(0,0,0,.6);
+}
+
+.mat-form-field.mat-form-field-invalid.ng-pristine .mat-form-field-label .mat-form-field-required-marker {
+  color: rgba(0,0,0,.6);
+}

@@ -1,7 +1,24 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Hello, {{ title }}!
-  </h1>
+<div class="app mat-app-background">
+  <header>
+    <h1>
+      <span>{{ title }}</span>
+    </h1>
+  </header>
+  <div class="container">
+
+    <nav mat-tab-nav-bar>
+      <a *ngFor="let link of links"
+         mat-tab-link
+         [routerLink]="link.path"
+         routerLinkActive #rla="routerLinkActive"
+         [routerLinkActiveOptions]="{exact: true}"
+         [active]="rla.isActive">
+        {{ link.label }}
+      </a>
+    </nav>
+    <router-outlet></router-outlet>
+    <p><a href="http://translate.yandex.com/" class="link">Powered by Yandex.Translate</a></p>
+  </div>
 </div>
+
 

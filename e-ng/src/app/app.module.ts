@@ -1,16 +1,53 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule, PLATFORM_ID, APP_ID, Inject } from '@angular/core';
+import { MatButtonModule, MatInputModule, MatListModule, MatSelectModule, MatSnackBarModule, MatTabsModule, MatTooltipModule} from "@angular/material";
+import { RouterModule, Routes } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 import { AppComponent } from './app.component';
+import { RecentComponent } from './recent/recent.component';
+import { GoComponent } from './go/go.component';
+import { SettingsComponent } from './settings/settings.component';
+import { DictionaryComponent } from './dictionary/dictionary.component';
+import { AddWordComponent } from './add-word/add-word.component';
+
+const routes: Routes = [
+    {path: 'settings', component: SettingsComponent},
+    {path: 'go', component: GoComponent},
+    {path: '', component: RecentComponent}
+    ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RecentComponent,
+    GoComponent,
+    SettingsComponent,
+    DictionaryComponent,
+    AddWordComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule.withServerTransition({ appId: 'e-ng-memory' }),
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatListModule,
+    MatTabsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, @Inject(APP_ID) private appId: string) {
+      const platform = isPlatformBrowser(platformId) ?
+          'in the browser' : 'on the server';
+      console.log(`Running ${platform} with appId=${appId}`);
+  }
+}

@@ -1,0 +1,25 @@
+<div class="actions">
+  <button mat-raised-button color="primary" (click)="addNew()">Add New</button>
+</div>
+<form #addWordForm="ngForm" [hidden]="!isFormOpen" (ngSubmit)="onSubmit()" autocomplete="off"><br>
+  <fieldset>
+    <legend>Add a new word</legend><br>
+    <div>
+      <mat-form-field>
+        <input matInput id="original" name="original" [(ngModel)]="model.original" required  placeholder="New word" #original="ngModel" pattern="[A-Za-z\s]+"/>
+      </mat-form-field>
+    </div><br>
+    <div>
+      <mat-form-field>
+        <input matInput id="translation" name="translation" [(ngModel)]="model.translation" required  placeholder="Translation" #translation="ngModel" />
+      </mat-form-field>
+    </div>
+    <mat-error *ngIf="!original.valid || !translation.valid">
+      Both fields are required
+    </mat-error>
+    <br>
+    <button type="button" mat-raised-button color="primary" (click)="translate(model.original)" [disabled]="!model.original">Translate</button>
+    &nbsp;
+    <button type="submit" mat-raised-button color="accent" [disabled]="!addWordForm.form.valid">Save</button>
+  </fieldset>
+</form>
