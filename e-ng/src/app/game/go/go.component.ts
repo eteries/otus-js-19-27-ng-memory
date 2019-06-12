@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../models/Game';
-import { spliceRandom } from "../utils";
+import { Game } from '../Game';
 import { MatSnackBar } from '@angular/material';
-import { DictionaryService } from "../dictionary.service";
+import { DictionaryService } from "../../dictionary/dictionary.service";
+import { Messages } from '../../shared/constants'
 
 @Component({
   selector: 'app-go',
@@ -24,7 +24,9 @@ export class GoComponent implements OnInit {
   next() {
     this.game.saveAnswer(this.model.answer);
 
-    const message = this.game.checkCurrentAnswer() ? 'You\'re right' : `Not really. The right answer is "${this.current.rightAnswer}"`;
+    const message = this.game.checkCurrentAnswer() ?
+        Messages.RIGHT_ANSWER :
+        Messages.WRONG_ANSWER + this.current.rightAnswer;
     this.snackBar.open(message, null, {duration: 3000});
 
     const nextQuestion = this.game.next();

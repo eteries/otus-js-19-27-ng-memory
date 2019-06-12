@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { WordUnit } from "../models/WordUnit";
-import { generateId } from "../utils"
+import { WordUnit } from "../WordUnit";
 import { DictionaryService } from "../dictionary.service";
-import { TranslateService } from "../translate.service";
+import { TranslateService } from "../../shared/translate.service";
+import { RandomizeService } from "../../shared/randomize.service";
 import { MatSnackBar } from "@angular/material";
+import { Messages } from '../../shared/constants'
 
 @Component({
   selector: 'add-word',
@@ -14,11 +15,11 @@ export class AddWordComponent {
   model = {} as WordUnit;
   isFormOpen:boolean = false;
 
-  constructor(private dictionaryService: DictionaryService, private translateService: TranslateService, private snackBar: MatSnackBar) { }
+  constructor(private dictionaryService: DictionaryService, private randomizeService: RandomizeService, private translateService: TranslateService, private snackBar: MatSnackBar) { }
 
   addNew() {
       this.isFormOpen = true;
-      this.model = new WordUnit(generateId(), new Date().toDateString(), '', '');
+      this.model = new WordUnit(this.randomizeService.generateId(), new Date().toDateString(), '', '');
   }
 
   translate(word: string) {
@@ -29,7 +30,7 @@ export class AddWordComponent {
   onSubmit() {
       this.isFormOpen = false;
       if (this.dictionaryService.add(this.model)) {
-        this.snackBar.open(`The word "${this.model.original}" has been added to your dictionary`, null, {duration: 2000});
+        this.snackBar.open(Messages.WORD_ADDED_L + this.model.original + Messages.WORD_ADDED_R, null, {duration: 2000});
       }
   }
 }

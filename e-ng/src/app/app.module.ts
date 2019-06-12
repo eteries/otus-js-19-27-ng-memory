@@ -7,11 +7,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { RecentComponent } from './recent/recent.component';
-import { GoComponent } from './go/go.component';
+import { RecentComponent } from './dictionary/recent/recent.component';
+import { GoComponent } from './game/go/go.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DictionaryComponent } from './dictionary/dictionary.component';
-import { AddWordComponent } from './add-word/add-word.component';
+import { AddWordComponent } from './dictionary/add-word/add-word.component';
+import { APP_TITLE } from './shared/constants';
 
 const routes: Routes = [
     {path: 'settings', component: SettingsComponent},
@@ -29,7 +30,7 @@ const routes: Routes = [
     AddWordComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'e-ng-memory' }),
+    BrowserModule.withServerTransition({ appId: APP_TITLE }),
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
